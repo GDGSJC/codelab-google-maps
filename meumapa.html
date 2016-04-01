@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CodeLab Google Maps API</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+	    var posicao = new google.maps.LatLng(-23.191581, -45.884941);
+	  
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: posicao,
+          zoom: 12,
+		  zoomControl: true,
+		  scaleControl: true,
+		  zoomControlOptions: {
+				position: google.maps.ControlPosition.LEFT_CENTER
+			},
+        });
+		
+		adicionaClientes();
+      }
+	  
+	  function adicionaClientes(){
+		for(var i = 0; i < clientes.length;i++){
+			var cliente = clientes[i];
+			var posicao = new google.maps.LatLng(cliente.lat, cliente.lng);
+			
+			var marker = new google.maps.Marker({
+				position: posicao,
+				map: map,
+				title: cliente.address
+			})
+		}
+	  }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJa4PHd0Dr_m8Gw80uY5kriQwurBKTLR8&callback=initMap"
+    async defer></script>
+	<script src="js/clientes.js"></script>
+  </body>
+</html>
